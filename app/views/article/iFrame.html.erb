@@ -60,7 +60,7 @@
 <script>
   request = $.ajax({
     //url: "http://thawing-thicket-8101.herokuapp.com/articles/add_new_article",
-    url: (ENV['domain'] + "/articles/add_new_article"),
+    url: "<%= ENV['domain'] %>/articles/add_new_article",
     type: "post",
     data: { URL: document.referrer },
     error: function (xhr, ajaxOptions, thrownError) {
