@@ -13,7 +13,7 @@ document.head.appendChild(js);
 //var domain = "http://rwm-stage.herokuapp.com"
 //var domain = "http://thawing-thicket-8101.herokuapp.com/"
 
-var domain = "http://0.0.0.0:3000"
+var domain = "<%= ENV['domain'] %>"
 
 setTimeout(function()
 {
