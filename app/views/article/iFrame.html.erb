@@ -1,0 +1,81 @@
+<h1>iFrame</h1>
+
+<div class='row'>
+  <div class='span8'>
+    <div id = 'article_content_id'>
+      Loading!
+    </div>
+  </div>
+  <div class='span4'>
+
+      <ul id="myTab" class="nav nav-tabs">
+        <li class="active">
+          <a href="#groups" data-toggle="tab">Groups</a>
+        </li>
+        <li>
+          <a href="#facebook" data-toggle="tab">Facebook</a>
+        </li> 
+      </ul>
+
+      <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade in active" id="groups">
+
+          Share to an existing Group:
+          <br/>
+
+          <%= form_for :group, url: "http://0.0.0.0:3000/groups/assign_to_group" do |f| %>
+
+            <%= f.collection_select(:group_id, Group.all, :id, :name )%>
+            <%= f.hidden_field :article_id %>
+
+            <%= f.button :submit %>
+          <% end %>
+
+          Share to a new Group:
+          <br/>
+          <%= simple_form_for :group, url: "http://0.0.0.0:3000/groups/create" do |f| %>
+
+            <p>
+              <%= f.input :name %><br>
+            </p>
+            
+            <p>
+              <%= f.button :submit %>
+            </p>
+          <% end %>
+
+        </div>
+
+
+        <div class="tab-pane fade" id="facebook">
+          <p>Share article to my facebook wall</p>
+          <p>Share article to my friends facebook wall</p>
+        </div>
+        
+  </div>
+
+</div>
+
+
+<script>
+  request = $.ajax({
+    //url: "http://thawing-thicket-8101.herokuapp.com/articles/add_new_article",
+    url: "http://0.0.0.0:3000/articles/add_new_article",
+    type: "post",
+    data: { URL: document.referrer },
+    error: function (xhr, ajaxOptions, thrownError) {
+          alert(xhr.status);
+          alert(thrownError);
+        },
+        dataType: 'json',
+    });
+
+    // callback handler that will be called on success
+    request.done(function (response, textStatus, jqXHR){
+        // log a message to the console
+    $('#article_content_id').html(response.content)
+
+    $('#group_article_id').val(response.id)  
+
+    });
+</script>
