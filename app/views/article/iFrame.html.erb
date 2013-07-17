@@ -23,7 +23,7 @@
           Share to an existing Group:
           <br/>
 
-          <%= form_for :group, url: "http://0.0.0.0:3000/groups/assign_to_group" do |f| %>
+          <%= form_for :group, url: (ENV['domain'] + "/groups/assign_to_group") do |f| %>
 
             <%= f.collection_select(:group_id, Group.all, :id, :name )%>
             <%= f.hidden_field :article_id %>
@@ -33,7 +33,7 @@
 
           Share to a new Group:
           <br/>
-          <%= simple_form_for :group, url: "http://0.0.0.0:3000/groups/create" do |f| %>
+          <%= simple_form_for :group, url: (ENV['domain'] + "/groups/create") do |f| %>
 
             <p>
               <%= f.input :name %><br>
@@ -60,7 +60,7 @@
 <script>
   request = $.ajax({
     //url: "http://thawing-thicket-8101.herokuapp.com/articles/add_new_article",
-    url: "http://0.0.0.0:3000/articles/add_new_article",
+    url: (ENV['domain'] + "/articles/add_new_article"),
     type: "post",
     data: { URL: document.referrer },
     error: function (xhr, ajaxOptions, thrownError) {
