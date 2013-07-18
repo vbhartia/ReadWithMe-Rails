@@ -1,4 +1,6 @@
 class ArticleController < ApplicationController
+  before_filter :authenticate_user!, :except => [:public_show]
+
   def index
       @articles = current_user.articles.all
   end
@@ -35,6 +37,10 @@ class ArticleController < ApplicationController
   end
 
   def show
+    @article = Article.find(params[:id])
+  end
+
+  def public_show
     @article = Article.find(params[:id])
   end
 

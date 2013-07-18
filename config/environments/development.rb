@@ -31,6 +31,7 @@ Rwm4::Application.configure do
 
   ENV['FACEBOOK_APP_ID'] = "1388882854659824";
   ENV['FACEBOOK_SECRET'] = "c1daa6ac740a5696c382d1ce32c8bb7f";
+  ENV['domain'] = "http://0.0.0.0:3000";
 
   OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 end

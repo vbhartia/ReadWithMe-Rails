@@ -11,3 +11,10 @@
  *= require_self
  *= require_tree .
  */
+
+.border {
+	border: black;
+	border-width: 1px;
+	border-color: black;
+	border-style:solid;
+}

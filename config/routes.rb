@@ -1,9 +1,12 @@
 Rwm4::Application.routes.draw do
   devise_for :users
   
-  #*********** Homepage *********#
+  #*********** Static Pages *********#
   root 'static_pages#home_page'
 
+  #*********** User Homepage *********#
+
+  get 'dash' => 'user_dash#dash'
 
   #*********** Article Handler *********#
   get 'articles' => 'article#index'
@@ -11,10 +14,16 @@ Rwm4::Application.routes.draw do
   #Render iFrame
   get 'articles/iFrame' => 'article#iFrame'
 
+  #Render show
   get 'articles/show/:id' => 'article#show', as: 'article_url'
 
   #add article
   post 'articles/add_new_article' => 'article#add_new_article'
+
+  #Handle Public posts
+  get 'articles/public/:id' => 'article#public_show'
+
+
 
   #*********** Group Handler *********#
   get 'groups' => 'group#index'
